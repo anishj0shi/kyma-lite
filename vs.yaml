@@ -1,0 +1,56 @@
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vs-httpbin
+  namespace: test
+spec:
+  gateways:
+  - kyma-gateway.kyma-system.svc.cluster.local
+  hosts:
+  - httpbin.aj-ser1.cf-kyma-k8.shoot.canary.k8s-hana.ondemand.com
+  http:
+   - match:
+     - uri:
+         regex: /.*
+     route:
+     - destination:
+         host: httpbin
+         port:
+           number: 8000
+       weight: 100
+
+---
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: serverless-docker-registry-lxm9q
+  namespace: kyma-system
+spec:
+  gateways:
+  - kyma-gateway.kyma-system.svc.cluster.local
+  hosts:
+  - registry.aj-ser1.cf-kyma-k8.shoot.canary.k8s-hana.ondemand.com
+  http:
+  - corsPolicy:
+      allowHeaders:
+      - Authorization
+      - Content-Type
+      - '*'
+      allowMethods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      allowOrigins:
+      - regex: .*
+    match:
+    - uri:
+        regex: /.*
+    route:
+    - destination:
+        host: serverless-docker-registry
+        port:
+          number: 5000
+      weight: 100

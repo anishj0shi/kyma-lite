@@ -1,0 +1,16 @@
+components:
+- name: cluster-essentials
+  namespace: kyma-system
+  release: ""
+- name: istio
+  namespace: istio-system
+  release: ""
+- name: xip-patch
+  namespace: kyma-installer
+  release: ""
+- name: core
+  namespace: kyma-system
+  release: ""
+- name: serverless
+  namespace: kyma-system
+  release: ""

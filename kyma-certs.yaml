@@ -1,0 +1,8 @@
+apiVersion: cert.gardener.cloud/v1alpha1
+kind: Certificate
+metadata:
+  name: kyma-tls-cert
+  namespace: default
+spec:
+  commonName: "*.aj-ser1.cf-kyma-k8.shoot.canary.k8s-hana.ondemand.com"
+  secretName: "kyma-gateway-certs"

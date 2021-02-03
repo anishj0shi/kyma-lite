@@ -1,0 +1,11 @@
+apiVersion: dns.gardener.cloud/v1alpha1
+kind: DNSEntry
+metadata:
+  name: dns-entry-kyma
+  annotations:
+    dns.gardener.cloud/class: garden
+spec:
+  dnsName: "*.vv3funhohf.cf-kyma-k8.shoot.canary.k8s-hana.ondemand.com"
+  ttl: 600
+  targets:
+    - 34.78.127.35
